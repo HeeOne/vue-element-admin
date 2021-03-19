@@ -1,4 +1,5 @@
 #app {
+  background-color: #f8f8f8;
 
   .main-container {
     min-height: 100%;
@@ -19,6 +20,7 @@
     left: 0;
     z-index: 1001;
     overflow: hidden;
+    box-shadow: 0 0 15px 0 rgb(34 41 47 / 5%);
 
     // reset element-ui css
     .horizontal-collapse-transition {

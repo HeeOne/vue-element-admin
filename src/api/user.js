@@ -2,23 +2,30 @@ import request from '@/utils/request'
 
 export function login(data) {
   return request({
-    url: '/vue-element-admin/user/login',
+    url: '/gmfmeswms/sys/login',
     method: 'post',
     data
   })
 }
 
-export function getInfo(token) {
+export function getUserPeimisson() {
   return request({
-    url: '/vue-element-admin/user/info',
+    url: '/gmfmeswms/sys/user/getMenus',
+    method: 'get'
+  })
+}
+
+export function fetchUserList(query) {
+  return request({
+    url: '/gmfmeswms/sys/user/list',
     method: 'get',
-    params: { token }
+    query
   })
 }
 
 export function logout() {
   return request({
-    url: '/vue-element-admin/user/logout',
-    method: 'post'
+    url: '/gmfmeswms/sys/logout',
+    method: 'get'
   })
 }

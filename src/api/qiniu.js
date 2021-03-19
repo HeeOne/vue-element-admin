@@ -1,7 +1,7 @@
-import request from '@/utils/request'
+const { mockRequestData } = require('../../mock/index-inuse')
 
 export function getToken() {
-  return request({
+  return mockRequestData({
     url: '/qiniu/upload/token', // 假地址 自行替换
     method: 'get'
   })

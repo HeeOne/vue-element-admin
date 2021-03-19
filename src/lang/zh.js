@@ -1,5 +1,8 @@
 export default {
   route: {
+    system: '系统',
+    userSetting: '用户设置',
+    officeSetting: '办公室设置',
     dashboard: '首页',
     documentation: '文档',
     guide: '引导页',

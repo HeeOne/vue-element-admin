@@ -6,16 +6,18 @@ import store from '@/store'
  * @example see @/views/permission/directive.vue
  */
 export default function checkPermission(value) {
-  if (value && value instanceof Array && value.length > 0) {
-    const roles = store.getters && store.getters.roles
-    const permissionRoles = value
+  const btnLimits = store.getters && store.getters.btnLimits
 
-    const hasPermission = roles.some(role => {
-      return permissionRoles.includes(role)
+  let hasPermission = false
+  if (value && typeof value === 'string') {
+    hasPermission = btnLimits.includes(value)
+  } else if (value && (value instanceof Array) && (value.length > 0)) {
+    hasPermission = btnLimits.some(item => {
+      return value.includes(item)
     })
-    return hasPermission
   } else {
-    console.error(`need roles! Like v-permission="['admin','editor']"`)
-    return false
+    throw new Error(`need btnLimits! Like v-permission="['admin','editor']" or v-permission="admin"`)
   }
+
+  return hasPermission
 }

@@ -21,34 +21,18 @@
       </template>
 
       <el-dropdown class="avatar-container right-menu-item hover-effect" trigger="click">
-        <div class="avatar-wrapper">
-          <img :src="avatar+'?imageView2/1/w/80/h/80'" class="user-avatar">
-          <i class="el-icon-caret-bottom" />
-        </div>
+        <span class="el-dropdown-link">
+          <el-avatar :src="avatar">
+            <img src="https://cube.elemecdn.com/e/fd/0fc7d20532fdaf769a25683617711png.png">
+          </el-avatar>
+        </span>
         <el-dropdown-menu slot="dropdown">
-          <router-link to="/profile/index">
-            <el-dropdown-item>
-              {{ $t('navbar.profile') }}
-            </el-dropdown-item>
-          </router-link>
-          <router-link to="/">
-            <el-dropdown-item>
-              {{ $t('navbar.dashboard') }}
-            </el-dropdown-item>
-          </router-link>
-          <a target="_blank" href="https://github.com/PanJiaChen/vue-element-admin/">
-            <el-dropdown-item>
-              {{ $t('navbar.github') }}
-            </el-dropdown-item>
-          </a>
-          <a target="_blank" href="https://panjiachen.github.io/vue-element-admin-site/#/">
-            <el-dropdown-item>Docs</el-dropdown-item>
-          </a>
-          <el-dropdown-item divided @click.native="logout">
+          <el-dropdown-item @click.native="logout">
             <span style="display:block;">{{ $t('navbar.logOut') }}</span>
           </el-dropdown-item>
         </el-dropdown-menu>
       </el-dropdown>
+
     </div>
   </div>
 </template>
@@ -73,10 +57,15 @@ export default {
     LangSelect,
     Search
   },
+  data() {
+    return {
+      avatar: 'https://cube.elemecdn.com/e/fd/0fc7d20532fdaf769a25683617711png.png'
+    }
+  },
   computed: {
     ...mapGetters([
       'sidebar',
-      'avatar',
+      // 'avatar',
       'device'
     ])
   },
@@ -150,7 +139,8 @@ export default {
     }
 
     .avatar-container {
-      margin-right: 30px;
+      margin-top: 5px;
+      margin-right: 10px;
 
       .avatar-wrapper {
         margin-top: 5px;

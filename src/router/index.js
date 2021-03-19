@@ -7,10 +7,12 @@ Vue.use(Router)
 import Layout from '@/layout'
 
 /* Router Modules */
-import componentsRouter from './modules/components'
-import chartsRouter from './modules/charts'
-import tableRouter from './modules/table'
-import nestedRouter from './modules/nested'
+import componentsRouter from './dev-modules/components'
+import chartsRouter from './dev-modules/charts'
+import tableRouter from './dev-modules/table'
+import nestedRouter from './dev-modules/nested'
+
+import systemRouter from './modules/system'
 
 /**
  * Note: sub-menu only appear when route children.length >= 1
@@ -84,6 +86,31 @@ export const constantRoutes = [
     ]
   },
   {
+    path: '/profile',
+    component: Layout,
+    redirect: '/profile/index',
+    hidden: true,
+    children: [
+      {
+        path: 'index',
+        component: () => import('@/views/profile/index'),
+        name: 'Profile',
+        meta: { title: 'profile', icon: 'user', noCache: true }
+      }
+    ]
+  }
+]
+
+/**
+ * asyncRoutes
+ * the routes that need to be dynamically loaded based on user roles
+ */
+export const asyncRoutes = [
+  ...systemRouter
+]
+
+export const devRoutes = [
+  {
     path: '/documentation',
     component: Layout,
     children: [
@@ -108,27 +135,6 @@ export const constantRoutes = [
       }
     ]
   },
-  {
-    path: '/profile',
-    component: Layout,
-    redirect: '/profile/index',
-    hidden: true,
-    children: [
-      {
-        path: 'index',
-        component: () => import('@/views/profile/index'),
-        name: 'Profile',
-        meta: { title: 'profile', icon: 'user', noCache: true }
-      }
-    ]
-  }
-]
-
-/**
- * asyncRoutes
- * the routes that need to be dynamically loaded based on user roles
- */
-export const asyncRoutes = [
   {
     path: '/permission',
     component: Layout,

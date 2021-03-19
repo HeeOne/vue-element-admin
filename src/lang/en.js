@@ -1,5 +1,8 @@
 export default {
   route: {
+    system: 'System',
+    userSetting: 'User Setting',
+    officeSetting: 'Office Setting',
     dashboard: 'Dashboard',
     documentation: 'Documentation',
     guide: 'Guide',

@@ -82,3 +82,40 @@
 .el-range-separator {
   box-sizing: content-box;
 }
+
+// search page
+.search-btn-group, 
+.search-form,
+.search-data-table {
+  margin-top: 10px;
+  padding: 10px;
+  background-color: #fff;
+}
+
+.search-form {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+
+  & label {
+    font-weight: normal;
+  }
+
+  & .el-cascader {
+    width: 100%;
+  }
+
+  &.el-form--label-top .el-form-item__label {
+    padding-bottom: 0;
+  }
+  
+  & .el-form-item {
+    width: 22%;
+    margin-bottom: 0;
+    margin-right: 20px;
+  }
+
+  & .el-form-item--small .el-form-item__label {
+    font-size: 13px;
+  }
+}

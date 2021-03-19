@@ -85,3 +85,13 @@ export function isArray(arg) {
   }
   return Array.isArray(arg)
 }
+
+/**
+ * check a value is ''
+ * @param {String} v
+ * @returns
+ */
+export function isTrueNullStr(v) {
+  if (typeof v !== 'string') { return false }
+  return v.replace(/(^\s*)|(\s*$)/g, '') === ''
+}
