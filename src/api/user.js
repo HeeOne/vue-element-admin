@@ -15,11 +15,11 @@ export function getUserPeimisson() {
   })
 }
 
-export function fetchUserList(query) {
+export function fetchUserList(params) {
   return request({
     url: '/gmfmeswms/sys/user/list',
     method: 'get',
-    query
+    params
   })
 }
 

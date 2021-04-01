@@ -1,9 +1,9 @@
 <template>
-  <div class="user-setting-page">
+  <div class="user-setting-page main-pane-page">
     <user-search-form ref="form" />
 
     <div class="search-btn-group">
-      <el-button type="primary" size="small" @click="search">{{ $t('Search') }}</el-button>
+      <el-button type="primary" @click="search">{{ $t('Search') }}</el-button>
     </div>
 
     <user-list-table class="search-data-table" :table-data="data" />

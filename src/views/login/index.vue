@@ -1,9 +1,9 @@
 <template>
   <div class="login-container">
     <div class="logo-wrapper">{{ systemName }}</div>
-    <div class="login-page-left">
+    <!-- <div class="login-page-left">
       <img src="@/assets/login_images/login.png" alt="login-picture">
-    </div>
+    </div> -->
     <div class="login-page-right">
       <el-form ref="loginForm" :model="loginForm" :rules="loginRules" class="login-form" autocomplete="on" label-position="left">
 
@@ -174,9 +174,9 @@ export default {
   position: fixed;
   top: 2rem;
   left: 2rem;
-  font-size: 1.8rem;
+  font-size: 1.2rem;
   font-weight: bold;
-  color: #fff;
+  // color: #fff;
 }
 .login-page-left {
   display: flex;
@@ -197,25 +197,25 @@ export default {
   justify-content: center;
   align-items: center;
   padding: 6rem;
-  width: 40%;
+  width: 100%;
   background-color: #fff;
 }
-@media (max-width: 992px) {
-  .login-page-left {
-    display: none !important;
-  }
-  .login-page-right {
-    width: 100%;
-  }
-}
-@media (max-width: 1120px) {
-  .login-page-left {
-    width: 50%;
-  }
-  .login-page-right {
-    width: 50%;
-  }
-}
+// @media (max-width: 992px) {
+//   .login-page-left {
+//     display: none !important;
+//   }
+//   .login-page-right {
+//     width: 100%;
+//   }
+// }
+// @media (max-width: 1120px) {
+//   .login-page-left {
+//     width: 50%;
+//   }
+//   .login-page-right {
+//     width: 50%;
+//   }
+// }
 </style>
 
 <style lang="scss">
@@ -320,7 +320,6 @@ $light_gray:#464646;
     }
 
     .set-language {
-      color: #fff;
       position: absolute;
       top: 3px;
       font-size: 18px;

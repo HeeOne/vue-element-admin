@@ -23,6 +23,8 @@ function mockRequestData(data) {
   }
   if (data.method === 'post') {
     data.body = data.data
+  } else if (data.method === 'get') {
+    data.query = data.params
   }
   return new Promise((resolve, reject) => {
     if (tagert) {

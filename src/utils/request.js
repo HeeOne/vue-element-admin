@@ -12,10 +12,10 @@ const service = axios.create({
   timeout: 30000, // request timeout
   // `paramsSerializer` is an optional function in charge of serializing `params`
   // (e.g. https://www.npmjs.com/package/qs, http://api.jquery.com/jquery.param/)
-  paramsSerializer: function(params) {
-    console.log(qs.parse(qs.stringify(params, { allowDots: true, arrayFormat: 'indices' })))
-    return qs.parse(qs.stringify(params, { allowDots: true, arrayFormat: 'indices' }))
-  },
+  // paramsSerializer: function(params) {
+  //   console.log(qs.parse(qs.stringify(params, { allowDots: true, arrayFormat: 'indices' })))
+  //   return qs.parse(qs.stringify(params, { allowDots: true, arrayFormat: 'indices' }))
+  // },
   // `transformRequest` allows changes to the request data before it is sent to the server
   // This is only applicable for request methods 'PUT', 'POST', 'PATCH' and 'DELETE'
   // The last function in the array must return a string or an instance of Buffer, ArrayBuffer,
@@ -39,7 +39,7 @@ service.interceptors.request.use(
     config.headers['language'] = remoteLangKey()
     config.headers['Content-Type'] = 'application/x-www-form-urlencoded; charset=utf-8'
     const token = getToken()
-    config.headers['token'] = token || null
+    config.headers['token'] = token
     return config
   },
   error => {
@@ -71,33 +71,33 @@ service.interceptors.response.use(
         type: 'error',
         duration: 5 * 1000
       })
-
-      // 50008: Illegal token; 50012: Other clients logged in; 50014: Token expired;
-      if (res.code === 401 || res.code === 402 || res.code === 403) {
-        // to re-login
-        MessageBox.confirm('You have been logged out, you can cancel to stay on this page, or log in again', 'Confirm logout', {
-          confirmButtonText: 'Re-Login',
-          cancelButtonText: 'Cancel',
-          type: 'warning'
-        }).then(() => {
-          store.dispatch('user/resetToken').then(() => {
-            location.reload()
-          })
-        })
-      }
-      return Promise.reject(new Error(res.message || 'Error'))
     } else {
       return res
     }
   },
   error => {
     console.log('err' + error) // for debug
-    Message({
-      message: error.message,
-      type: 'error',
-      duration: 5 * 1000
-    })
-    return Promise.reject(error)
+    const res = error.data
+    // 50008: Illegal token; 50012: Other clients logged in; 50014: Token expired;
+    if (res.code === 401 || res.code === 402 || res.code === 403) {
+      // to re-login
+      MessageBox.confirm('You have been logged out, you can cancel to stay on this page, or log in again', 'Confirm logout', {
+        confirmButtonText: 'Re-Login',
+        cancelButtonText: 'Cancel',
+        type: 'warning'
+      }).then(() => {
+        store.dispatch('user/resetToken').then(() => {
+          location.reload()
+        })
+      })
+    } else {
+      Message({
+        message: error.message,
+        type: 'error',
+        duration: 5 * 1000
+      })
+    }
+    return Promise.reject(new Error(res.message || 'Error'))
   }
 )
 

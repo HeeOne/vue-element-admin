@@ -95,6 +95,24 @@ const componentsRouter = {
       component: () => import('@/views/components-demo/drag-kanban'),
       name: 'DragKanbanDemo',
       meta: { title: 'dragKanban' }
+    },
+    {
+      path: 'query-select',
+      component: () => import('@/views/components-demo/query-select'),
+      name: 'QuerySelect',
+      meta: { title: 'QuerySelect' }
+    },
+    {
+      path: 'query-select-local',
+      component: () => import('@/views/components-demo/query-select-local'),
+      name: 'QuerySelectLocal',
+      meta: { title: 'QuerySelectLocal' }
+    },
+    {
+      path: 'progress-steps',
+      component: () => import('@/views/components-demo/progress-steps'),
+      name: 'ProgressSteps',
+      meta: { title: 'ProgressSteps' }
     }
   ]
 }

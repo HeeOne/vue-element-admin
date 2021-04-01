@@ -2,26 +2,26 @@
 
 import Layout from '@/layout'
 
-const systemRouter = [
+const organizationRouter = [
   {
-    path: '/sys',
+    path: '/organization',
     component: Layout,
     redirect: 'noRedirect',
-    name: 'system',
+    name: 'organization',
     meta: {
-      title: 'system',
+      title: 'organization',
       icon: 'chart'
     },
     children: [
       {
         path: 'office-setting',
-        component: () => import('@/views/system/office-setting/index'),
+        component: () => import('@/views/organization/office-setting/index'),
         name: 'officeSetting',
         meta: { title: 'officeSetting', noCache: true, href: '/sys/office/OfficeList' }
       },
       {
         path: 'user-setting',
-        component: () => import('@/views/system/user-setting/index'),
+        component: () => import('@/views/organization/user-setting/index'),
         name: 'userSetting',
         meta: { title: 'userSetting', noCache: true, href: '/sys/user/UserList' }
       }
@@ -29,4 +29,4 @@ const systemRouter = [
   }
 ]
 
-export default systemRouter
+export default organizationRouter
