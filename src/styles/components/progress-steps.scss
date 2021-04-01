@@ -1,0 +1,101 @@
+@use "sass:map";
+
+.zm-progress-steps {
+  $step-item-height: 36px;
+  $progress-steps-backgroud-color: #fff;
+  
+  $color-maps: (
+                "wait": $--color-text-placeholder, 
+                "process": $--color-text-regular, 
+                "finish": rgb(71, 116, 193), 
+                "error": rgb(75, 180, 103), 
+                "success": rgb(74, 189, 184)
+              );
+
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  background-color: $progress-steps-backgroud-color;
+  
+  .steps-item,
+  .the-last-item-triangle {
+    height: $step-item-height;
+    position: relative;
+    background-color: map.get($color-maps, "wait");
+  }
+
+  .steps-item {
+    padding-left: 5px;
+    padding-right: $step-item-height/2;
+    flex: 1 1 0;
+    color: #fff;
+    line-height: $step-item-height;
+    font-size: $--font-size-base;
+    font-weight: bold;
+    cursor: pointer;
+
+    .steps-item-text {
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+  }
+
+  .the-last-item-triangle {
+    flex: 0 0 auto;
+
+    .triangle-curr {
+      border-color: $progress-steps-backgroud-color;
+    }
+  }
+
+  .triangle {
+    position: absolute;
+    top: 0;
+    width: 0;
+    height: 0;
+    border-style: solid;
+  }
+
+  .triangle-pre {
+    left: -($step-item-height/2)-1px;
+    border-width: $step-item-height/2 0 $step-item-height/2 $step-item-height/2;
+    border-top-color: transparent;
+    border-bottom-color: transparent;
+    border-right-color: transparent;
+    border-left-color: map.get($color-maps, "wait");
+    z-index: 1;
+
+    @each $key, $color in $color-maps {
+      &.#{$key} {
+        border-left-color: $color;
+      }
+    }
+    
+  }
+
+  .triangle-curr {
+    left: -($step-item-height/2);
+    border-width: $step-item-height/2 0 $step-item-height/2 $step-item-height/2;
+    border-top-color: map.get($color-maps, "wait");
+    border-bottom-color: map.get($color-maps, "wait");
+    border-right-color: map.get($color-maps, "wait");
+    border-left-color: $progress-steps-backgroud-color;
+
+    @each $key, $color in $color-maps{
+      &.#{$key} {
+        border-top-color:  $color;
+        border-bottom-color: $color;
+        border-right-color: $color;
+      }
+    }
+  }
+
+  @each $key, $color in $color-maps {
+    .steps-item.#{$key} {
+      background-color: $color;
+    }
+  }
+
+}
