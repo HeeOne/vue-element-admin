@@ -27,7 +27,8 @@ router.beforeEach(async(to, from, next) => {
       NProgress.done() // hack: https://github.com/PanJiaChen/vue-element-admin/pull/2939
     } else {
       // determine whether the user has obtained his permission roles through getInfo
-      const hasMenus = store.getters.permission_routes && store.getters.permission_routes.length > 0
+      // TODO
+      const hasMenus = store.getters.permission_routes && store.getters.permission_routes.length
       if (hasMenus) {
         next()
       } else {

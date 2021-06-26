@@ -20,6 +20,7 @@ const messages = {
 }
 
 export function remoteLangKey(key) {
+  !key && (key = i18n.locale)
   const match = { 'en': 'en-US', 'zh': 'zh-CN' }
   return match[key] || key
 }

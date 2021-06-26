@@ -1,10 +1,11 @@
 <template>
-  <div>hi</div>
+  <div>
+    query select
+  </div>
 </template>
 
 <script>
 export default {
-  name: 'DashboardAdmin'
+  name: 'QuerySelectDemo'
 }
 </script>
-

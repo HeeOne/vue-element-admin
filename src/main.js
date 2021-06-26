@@ -8,6 +8,7 @@ import Element from 'element-ui'
 import './styles/element-variables.scss'
 
 import '@/styles/index.scss' // global css
+import 'tui-image-editor/dist/tui-image-editor.css' // image editor
 
 import App from './App'
 import store from './store'
@@ -18,14 +19,12 @@ import './icons' // icon
 import './permission' // permission control
 import './utils/error-log' // error log
 
-import * as filters from './filters' // global filters
+// import VueAnalytics from 'vue-analytics'
 
-import VueAnalytics from 'vue-analytics'
-
-Vue.use(VueAnalytics, {
-  id: 'UA-109340118-1',
-  router
-})
+// Vue.use(VueAnalytics, {
+//   id: 'UA-109340118-1',
+//   router
+// })
 
 /**
  * If you don't want to use mock-server
@@ -43,11 +42,6 @@ Vue.use(VueAnalytics, {
 Vue.use(Element, {
   size: Cookies.get('size') || 'samll', // set element-ui default size
   i18n: (key, value) => i18n.t(key, value)
-})
-
-// register global utility filters
-Object.keys(filters).forEach(key => {
-  Vue.filter(key, filters[key])
 })
 
 Vue.config.productionTip = false

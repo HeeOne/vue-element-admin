@@ -1,26 +1,81 @@
-.zm-query-select-button {
+.query-select-button {
+  padding-top: 0;
+  padding-right: 50px;
+  padding-bottom: 0;
+  position: relative;
+  display: block;
   width: 100%;
   font-size: $--font-size-base;
   text-align: left;
   overflow: hidden;
   text-overflow: ellipsis;
+  height: $--input-small-height;
+  line-height: $--input-small-height;
 
-  &.el-button--small {
-    padding-top: 0;
-    padding-bottom: 0;
-    height: $--input-small-height;
-    line-height: $--input-small-height;
+  &.is-disabled, &.is-disabled:hover, &.is-disabled:focus {
+    background-color: #f5f7fa8a;
+    border-color: #E4E7ED;
+    color: #606266;
   }
+
   .placeholder {
     color: $--color-text-placeholder;
   }
   span {
     text-overflow: ellipsis;
   }
+
+  i.el-icon-circle-close {
+    position: absolute;
+    right: 5px;
+    top: 50%;
+    transform: translateY(-50%);
+    display: none;
+  }
+
+  &:not(.is-disabled):hover i.el-icon-circle-close {
+    display: block;
+  }
 }
-.zm-query-select-popover {
+
+.query-select span.el-popover__reference-wrapper {
+  display: flex;
+}
+
+.query-select-popover {
+  padding: 10px 0;
+  position: absolute;
+  left: 0;
+  right: 0;
+  background: #fff;
+  z-index: 22;
+  box-shadow: 0 0 4px #ccc;
+
+  $space: 10px;
+
+  .count-wrap,
+  .no-result-tip {
+    padding-left: $space;
+    padding-right: $space;
+  }
+   
+  .el-input {
+    margin: 0 $space;
+    width: calc(100% - #{$space} - #{$space});
+  }
+
   .el-scrollbar {
-    margin-top: 5px;
+    
+    &.selected-pane,
+    &.to-select-pane {
+      margin-right: $space;
+      margin-left: $space;
+      margin-bottom: 10px;
+    }
+
+    &.to-select-pane {
+      margin-top: 6px;
+    }
 
     &.selected-pane .el-scrollbar__wrap {
       max-height: 120px;
@@ -57,13 +112,19 @@
   }
   .el-tag {
     margin-right: 5px;
-    margin-bottom: 5px;
     margin-left: 0 !important;
+    max-width: calc(100% - 5px);
+    height: auto;
+    white-space: normal;
     
     &.show-all {
       height: auto;
       white-space: normal;
     }
+  }
+
+  .el-tag + .el-tag {
+    margin-bottom: 0;
   }
   
   .loading-height {

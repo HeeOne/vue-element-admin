@@ -68,7 +68,6 @@ import { validUsername } from '@/utils/validate'
 import LangSelect from '@/components/LangSelect'
 
 const defaultSettings = require('../../settings')
-
 export default {
   name: 'Login',
   components: { LangSelect },
